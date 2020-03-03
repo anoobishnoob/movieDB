@@ -1,6 +1,5 @@
 # movie_database
-
-A new Flutter application.
+Learning ListViews
 
 ## Getting Started
 
