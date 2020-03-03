@@ -1,3 +1,4 @@
+// this is a hexparser I wrote to stream line the colors and make them look better
 import 'package:flutter/material.dart';
 
 
