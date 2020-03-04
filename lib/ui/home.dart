@@ -51,7 +51,7 @@ class MovieListView extends StatelessWidget {
               subtitle: Text("more text"),
               onTap: (){
                 Navigator.push(context, MaterialPageRoute(
-                    builder: (context) => MovieListViewDetails()));
+                    builder: (context) => MovieListViewDetails(movieName: movies.elementAt(index),)));
               },
               //onTap: () => debugPrint("Movie name: ${movies.elementAt(index)}"),
             ));
@@ -72,6 +72,7 @@ class MovieListViewDetails extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+        title: Text("Movies ${this.movieName}"),
         backgroundColor: Colors.blueGrey.shade900,
       ),
       body: Container(
