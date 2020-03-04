@@ -49,13 +49,38 @@ class MovieListView extends StatelessWidget {
               trailing: Text("..."),
               title: Text(movies.elementAt(index)),
               subtitle: Text("more text"),
-              onTap: () => debugPrint("Movie name: ${movies.elementAt(index)}")
-            ),
-          );
+              onTap: (){
+                Navigator.push(context, MaterialPageRoute(
+                    builder: (context) => MovieListViewDetails()));
+              },
+              //onTap: () => debugPrint("Movie name: ${movies.elementAt(index)}"),
+            ));
     }),
     );
   }
 }
+
+// new route/screen/page
+class MovieListViewDetails extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        backgroundColor: Colors.blueGrey.shade900,
+      ),
+      body: Container(
+        child: RaisedButton(
+          child: Text("Go back"),
+          onPressed: () {
+            Navigator.push(context, MaterialPageRoute(
+                builder: (context) => MovieListView()));
+          },
+        ),
+      ),
+    );
+  }
+}
+
 
 
 
