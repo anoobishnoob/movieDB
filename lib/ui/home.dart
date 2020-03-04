@@ -62,6 +62,12 @@ class MovieListView extends StatelessWidget {
 
 // new route/screen/page
 class MovieListViewDetails extends StatelessWidget {
+  final String movieName;
+
+  const MovieListViewDetails({Key key, this.movieName}) : super(key: key);
+
+
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -72,8 +78,7 @@ class MovieListViewDetails extends StatelessWidget {
         child: RaisedButton(
           child: Text("Go back"),
           onPressed: () {
-            Navigator.push(context, MaterialPageRoute(
-                builder: (context) => MovieListView()));
+            Navigator.pop(context); // navigates back to the first page
           },
         ),
       ),
