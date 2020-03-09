@@ -2,24 +2,13 @@
 //test
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:movie_database/model/movie.dart';
 import 'package:movie_database/util/hexcolor.dart';
 
 class MovieListView extends StatelessWidget {
-  final List movies = [
-    "Titanic",
-    "Blade Runner",
-    "Rambo",
-    "The Avengers",
-    "Avatar",
-    "I Am Legend",
-    "300",
-    "The Wolf Of Wall Street",
-    "Interstellar",
-    "Game of thrones",
-    "Vikings",
-    "Paprika"
-  ];
-  int _counter =0;
+
+  final List<Movie> movieList = Movie.getMovies();
+
   Color _purple = HexColor("#5900B3");
 
   @override
@@ -31,7 +20,7 @@ class MovieListView extends StatelessWidget {
       ),
       backgroundColor: Colors.blueGrey.shade400,
         body: ListView.builder(
-            itemCount: movies.length, // this is the thing you have to remember to use something like bluetoothlist item .length -sudocode of what I want
+            itemCount: movieList.length, // this is the thing you have to remember to use something like bluetoothlist item .length -sudocode of what I want
             itemBuilder: (BuildContext context, int index){
           return Card(
             elevation: 7,
@@ -39,19 +28,25 @@ class MovieListView extends StatelessWidget {
             child: ListTile(
               leading: CircleAvatar(
                 child: Container(
+                  width: 200,
+                  height: 200,
                   decoration: BoxDecoration(
+                    image: DecorationImage(
+                      image: NetworkImage(movieList[index].images[0]),
+                      fit: BoxFit.cover
+                    ),
                     color: _purple,
                         borderRadius: BorderRadius.circular(50.9)
                   ),
-                  child: Text("ugly"),
                 )
               ),
               trailing: Text("..."),
-              title: Text(movies.elementAt(index)),
-              subtitle: Text("more text"),
+              title: Text(movieList[index].title),
+              subtitle: Text(movieList[index].plot),
               onTap: (){
                 Navigator.push(context, MaterialPageRoute(
-                    builder: (context) => MovieListViewDetails(movieName: movies.elementAt(index),)));
+                    builder: (context) => MovieListViewDetails(movieName: movieList[0].title,
+                    movie: movieList[index])));
               },
               //onTap: () => debugPrint("Movie name: ${movies.elementAt(index)}"),
             ));
@@ -63,8 +58,9 @@ class MovieListView extends StatelessWidget {
 // new route/screen/page
 class MovieListViewDetails extends StatelessWidget {
   final String movieName;
+  final Movie movie;
 
-  const MovieListViewDetails({Key key, this.movieName}) : super(key: key);
+  const MovieListViewDetails({Key key, this.movieName, this.movie}) : super(key: key);
 
 
 
@@ -75,12 +71,14 @@ class MovieListViewDetails extends StatelessWidget {
         title: Text("Movies ${this.movieName}"),
         backgroundColor: Colors.blueGrey.shade900,
       ),
-      body: Container(
-        child: RaisedButton(
-          child: Text("Go back"),
-          onPressed: () {
-            Navigator.pop(context); // navigates back to the first page
-          },
+      body: Center(
+        child: Container(
+          child: RaisedButton(
+            child: Text("Go back ${this.movie.title}"),
+            onPressed: () {
+              Navigator.pop(context); // navigates back to the first page
+            },
+          ),
         ),
       ),
     );
