@@ -22,7 +22,8 @@ class MovieListView extends StatelessWidget {
         body: ListView.builder(
             itemCount: movieList.length, // this is the thing you have to remember to use something like bluetoothlist item .length -sudocode of what I want
             itemBuilder: (BuildContext context, int index){
-          return Card(
+              return movieCard(movieList[index], context);
+          /*return Card(
             elevation: 7,
             color: Colors.white,
             child: ListTile(
@@ -49,10 +50,42 @@ class MovieListView extends StatelessWidget {
                     movie: movieList[index])));
               },
               //onTap: () => debugPrint("Movie name: ${movies.elementAt(index)}"),
-            ));
+            ));*/
+
+
     }),
     );
   }
+  Widget movieCard(Movie movie, BuildContext context){
+    return InkWell(
+      child: Container(
+        width: MediaQuery.of(context).size.width,
+        height: 120,
+        child: Card(
+          color: Colors.black45,
+          child: Padding(
+            padding: const EdgeInsets.only(top: 8.0,
+            bottom: 8.0,
+            left: 54),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              mainAxisAlignment: MainAxisAlignment.spaceAround,
+              children: <Widget>[
+                Text(movie.title)
+              ],
+            ),
+          ),
+        ),
+      )
+    );
+  }
+
+
+
+
+
+
+
 }
 
 // new route/screen/page
