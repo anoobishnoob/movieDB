@@ -71,7 +71,14 @@ class MovieListView extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.start,
               mainAxisAlignment: MainAxisAlignment.spaceAround,
               children: <Widget>[
-                Text(movie.title)
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: <Widget>[
+                  Text(movie.title),
+                  Text("rating: ${movie.imdbRating} /10"
+                  )
+                ],)
+
               ],
             ),
           ),
