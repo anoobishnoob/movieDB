@@ -77,13 +77,22 @@ class MovieListView extends StatelessWidget {
                   Text(movie.title),
                   Text("rating: ${movie.imdbRating} /10"
                   )
-                ],)
+                ],
+                ),
+                Row(children: <Widget>[
+                  Text("Released ${movie.released} "),
+                  Text(movie.runtime),
+                  Text(" Rated: ${movie.rated}")
+                ],
+
+                ),
 
               ],
             ),
           ),
         ),
-      )
+      ),
+          onTap: () => debugPrint("just a debug message at ${movie.title}"),
     );
   }
 
